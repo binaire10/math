@@ -1,16 +1,17 @@
-#include "src/point.hpp"
-#include "src/vector.hpp"
+#include <point.hpp>
+#include <vector.hpp>
 #include <iostream>
 
 
 int main() {
-    constexpr auto a = make_vector<float>(1.0f, 1.0f), b = make_vector<float>(0.0f, 1.0f);
-    constexpr auto c = make_vector<float>(1.0f, 1.0f, 0.0f), d = make_vector<float>(0.0f, 1.0f, 0.0f);
-    constexpr auto e = cross(make_vector<float>(1, 0, 0), make_vector<float>(1, 1, 0));
+    constexpr auto a = make_vector<float>(0, 1);
 
-    std::cout << cos(a, b) << ' ' << cos(c, d) << std::endl;
-    std::cout << sin(a, b) << ' ' << sin(c, d) << std::endl;
-    std::cout << e.x << ' ' << e.y << ' ' << e.z;
+    for (int i = 0; i < 2; ++i) {
+        for (int j = 0; j < 2; ++j) {
+            auto b = make_vector<float>(i*2-1, j*2-1);
+            std::cout << cos(a, b) << ' ' << absSin(a, b) << std::endl;
+        }
+    }
 
     return 0;
 }
