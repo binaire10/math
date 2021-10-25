@@ -9,12 +9,75 @@
 
 template<typename T, std::size_t n>
 struct point {
+    using value_type = T;
+    using reference = value_type &;
+    using const_reference = const value_type &;
+    using iterator = value_type *;
+    using const_iterator = const value_type *;
+
+    static_assert(std::is_scalar_v<value_type>);
+
+    constexpr reference operator[](std::size_t i) noexcept {
+        return data[i];
+    }
+
+    constexpr const_reference operator[](std::size_t i) const noexcept {
+        return data[i];
+    }
+
+    constexpr iterator begin() noexcept {
+        return data.begin();
+    }
+
+    constexpr iterator end() noexcept {
+        return data.end();
+    }
+
+    constexpr const_iterator begin() const noexcept {
+        return data.begin();
+    }
+
+    constexpr const_iterator end() const noexcept {
+        return data.end();
+    }
+
     std::array<T, n> data;
 };
 
 template<typename T>
 struct point<T, 2> {
-    static_assert(std::is_scalar_v<T>);
+    using value_type = T;
+    using reference = value_type &;
+    using const_reference = const value_type &;
+    using iterator = value_type *;
+    using const_iterator = const value_type *;
+
+    static_assert(std::is_scalar_v<value_type>);
+
+    constexpr reference operator[](std::size_t i) noexcept {
+        return data[i];
+    }
+
+    constexpr const_reference operator[](std::size_t i) const noexcept {
+        return data[i];
+    }
+
+    constexpr iterator begin() noexcept {
+        return data.begin();
+    }
+
+    constexpr iterator end() noexcept {
+        return data.end();
+    }
+
+    constexpr const_iterator begin() const noexcept {
+        return data.begin();
+    }
+
+    constexpr const_iterator end() const noexcept {
+        return data.end();
+    }
+
     union {
         struct {
             T x, y;
@@ -25,7 +88,38 @@ struct point<T, 2> {
 
 template<typename T>
 struct point<T, 3> {
-    static_assert(std::is_scalar_v<T>);
+    using value_type = T;
+    using reference = value_type &;
+    using const_reference = const value_type &;
+    using iterator = value_type *;
+    using const_iterator = const value_type *;
+
+    static_assert(std::is_scalar_v<value_type>);
+
+    constexpr reference operator[](std::size_t i) noexcept {
+        return data[i];
+    }
+
+    constexpr const_reference operator[](std::size_t i) const noexcept {
+        return data[i];
+    }
+
+    constexpr iterator begin() noexcept {
+        return data.begin();
+    }
+
+    constexpr iterator end() noexcept {
+        return data.end();
+    }
+
+    constexpr const_iterator begin() const noexcept {
+        return data.begin();
+    }
+
+    constexpr const_iterator end() const noexcept {
+        return data.end();
+    }
+
     union {
         struct {
             T x, y, z;
