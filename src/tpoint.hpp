@@ -1,5 +1,5 @@
-#ifndef MATH_POINT_HPP
-#define MATH_POINT_HPP
+#ifndef MATH_TPOINT_HPP
+#define MATH_TPOINT_HPP
 
 #include <algorithm>
 #include <array>
@@ -8,7 +8,7 @@
 #include <type_traits>
 
 template<typename T, std::size_t n>
-struct point {
+struct tpoint {
     using value_type = T;
     using reference = value_type &;
     using const_reference = const value_type &;
@@ -45,7 +45,7 @@ struct point {
 };
 
 template<typename T>
-struct point<T, 2> {
+struct tpoint<T, 2> {
     using value_type = T;
     using reference = value_type &;
     using const_reference = const value_type &;
@@ -82,12 +82,12 @@ struct point<T, 2> {
         struct {
             T x, y;
         };
-        T data[2];
+        std::array<T, 2> data;
     };
 };
 
 template<typename T>
-struct point<T, 3> {
+struct tpoint<T, 3> {
     using value_type = T;
     using reference = value_type &;
     using const_reference = const value_type &;
@@ -105,45 +105,45 @@ struct point<T, 3> {
     }
 
     constexpr iterator begin() noexcept {
-        return data.begin();
+        return std::begin(data);
     }
 
     constexpr iterator end() noexcept {
-        return data.end();
+        return std::end(data);
     }
 
     constexpr const_iterator begin() const noexcept {
-        return data.begin();
+        return std::begin(data);
     }
 
     constexpr const_iterator end() const noexcept {
-        return data.end();
+        return std::end(data);
     }
 
     union {
         struct {
             T x, y, z;
         };
-        T data[3];
+        std::array<T, 3> data;
     };
 };
 
 template<typename T, typename... ArgT>
-constexpr point<T, sizeof...(ArgT)> make_point(ArgT... v) {
-    return point<T, sizeof...(ArgT)>{.data = {static_cast<T>(v)...}};
+constexpr tpoint<T, sizeof...(ArgT)> make_point(ArgT... v) {
+    return tpoint<T, sizeof...(ArgT)>{.data = {static_cast<T>(v)...}};
 }
 
 template<typename T, std::size_t n>
-constexpr T distanceSquare(const point<T, n> &a, const point<T, n> &b) {
+constexpr T distanceSquare(const tpoint<T, n> &a, const tpoint<T, n> &b) {
     return std::transform_reduce(std::begin(a.data), std::end(a.data), std::begin(b.data), T{}, std::plus<>{}, [](auto a, auto b) {
-        auto diff = b - a;
+        const auto diff = b - a;
         return diff * diff;
     });
 }
 
 template<typename T, std::size_t n>
-constexpr T distance(const point<T, n> &a, const point<T, n> &b) {
+constexpr T distance(const tpoint<T, n> &a, const tpoint<T, n> &b) {
     return std::sqrt(distanceSquare(a, b));
 }
 
-#endif//MATH_POINT_HPP
+#endif//MATH_TPOINT_HPP
