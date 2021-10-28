@@ -1,5 +1,5 @@
-#ifndef MATH_GEOMETRY_HPP
-#define MATH_GEOMETRY_HPP
+#ifndef MATH_BASIC_GEOMETRY_HPP
+#define MATH_BASIC_GEOMETRY_HPP
 
 #include <cstdint>
 
@@ -34,4 +34,4 @@ namespace dim3 {
     };
 }
 
-#endif//MATH_GEOMETRY_HPP
+#endif//MATH_BASIC_GEOMETRY_HPP

@@ -1,5 +1,5 @@
-#ifndef MATH_TRANSFORM_HPP
-#define MATH_TRANSFORM_HPP
+#ifndef MATH_BASIC_DETAIL_TRANSFORM_HPP
+#define MATH_BASIC_DETAIL_TRANSFORM_HPP
 
 namespace t_detail {
     template<typename T, std::size_t n, template<typename, std::size_t> typename ContainerT>
@@ -53,4 +53,5 @@ namespace t_detail {
         }
     };
 }// namespace t_detail
-#endif//MATH_TRANSFORM_HPP
+
+#endif//MATH_BASIC_DETAIL_TRANSFORM_HPP

@@ -1,7 +1,5 @@
 #include "tvector.hpp"
-#include <assert.h>
-#include <functional>
-#include <iostream>
+#include <cassert>
 
 int main() {
     using namespace vector::operand;
